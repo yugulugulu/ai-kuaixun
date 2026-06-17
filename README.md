@@ -1,16 +1,16 @@
 # ai-kuaixun
 
-A Codex skill that fetches AI briefs from PostgreSQL over SSH, classifies them into `模型` / `Agent` / `多模态` / `落地` / `风险`, and writes a Markdown candidate pool note to Obsidian.
+这是一个 Codex Skill，用于通过 SSH 从 PostgreSQL 中抓取 AI 快讯，将内容归类到 `模型` / `Agent` / `多模态` / `落地` / `风险` 五个栏目，并把候选池写入 Obsidian Markdown 笔记。
 
-## What this repo contains
+## 仓库内容
 
-- `SKILL.md`: skill instructions for Codex
-- `agents/openai.yaml`: skill UI metadata
-- `scripts/fetch_ai_kuaixun.py`: fetch + classify + render script
-- `install.sh`: installs this skill into `~/.codex/skills/ai-kuaixun`
-- `.env.example`: runtime configuration template
+- `SKILL.md`：Codex 读取的 Skill 说明
+- `agents/openai.yaml`：Skill 的界面元信息
+- `scripts/fetch_ai_kuaixun.py`：抓取、分类、渲染笔记的主脚本
+- `install.sh`：把 Skill 安装到 `~/.codex/skills/ai-kuaixun`
+- `.env.example`：运行时配置模板
 
-## Quick start
+## 快速开始
 
 ```bash
 git clone https://github.com/yugulugulu/ai-kuaixun.git
@@ -18,7 +18,7 @@ cd ai-kuaixun
 ./install.sh
 ```
 
-Then fill in `~/.codex/skills/ai-kuaixun/.env`:
+然后填写 `~/.codex/skills/ai-kuaixun/.env`：
 
 ```bash
 AI_KUAIXUN_SSH_HOST=your-server-host
@@ -29,13 +29,13 @@ AI_KUAIXUN_TABLE=public.ai_briefs
 AI_KUAIXUN_OBSIDIAN_DIR=~/obsidian workspace/AI日报/候选池
 ```
 
-Run the script:
+执行脚本：
 
 ```bash
 python3 ~/.codex/skills/ai-kuaixun/scripts/fetch_ai_kuaixun.py
 ```
 
-Override the time window if needed:
+如果需要自定义时间窗口：
 
 ```bash
 python3 ~/.codex/skills/ai-kuaixun/scripts/fetch_ai_kuaixun.py \
@@ -43,8 +43,8 @@ python3 ~/.codex/skills/ai-kuaixun/scripts/fetch_ai_kuaixun.py \
   --end '2026-04-24 00:00:00+08'
 ```
 
-## Notes
+## 说明
 
-- The script requires either `AI_KUAIXUN_SSH_PASSWORD` or `AI_KUAIXUN_SSH_KEY_PATH`.
-- The target PostgreSQL instance must be reachable from the SSH host via local `sudo -u postgres psql`.
-- `.env` is intentionally gitignored.
+- 脚本要求至少提供 `AI_KUAIXUN_SSH_PASSWORD` 或 `AI_KUAIXUN_SSH_KEY_PATH` 其中之一。
+- 目标 PostgreSQL 必须能在 SSH 服务器本机通过 `sudo -u postgres psql` 访问。
+- `.env` 已加入 `.gitignore`，不会被提交到仓库。

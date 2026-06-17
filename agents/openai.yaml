@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI快讯"
+  short_description: "抓取数据库快讯并按五类写入 Obsidian 候选池"
+  default_prompt: "Use $ai-kuaixun to fetch AI briefs from the default rolling window, classify them into five buckets, and write the title-and-summary note to Obsidian."
